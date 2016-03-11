@@ -1,0 +1,22 @@
+township:
+  image: lukeswart/township-server:release-0.0.1
+  volumes:
+    - ~/db:/server/db
+  environment:
+    - PORT=${TOWNSHIP_PORT}
+    - NODE_ENV=${NODE_ENV}
+    - SECRET=${SECRET}
+  ports:
+    - 4444:${TOWNSHIP_PORT}
+  restart: always
+  command: sh -c "git fetch && git checkout master && git pull --rebase && ./start.sh"
+
+nginx:
+  image: lukeswart/nginx-openresty:release-1.9.7.3
+  volumes:
+    - ./nginx.conf:/nginx.conf
+  links:
+    - township
+  ports:
+    - 80:80
+  restart: always
