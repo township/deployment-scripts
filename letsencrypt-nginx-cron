@@ -1,0 +1,3 @@
+00 23 * * * docker restart township_letsencrypt_1 && echo 'running crontab' && docker exec township_app_1 nginx -s reload
+# An empty line is required at the end of this file for a valid cron file.
+
