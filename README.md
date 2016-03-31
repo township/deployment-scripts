@@ -7,7 +7,7 @@ To use **LetsDeploy**, we are assuming that you have containerized your applicat
 
 Feel free to fork this project, dial in your config (explained below), and get your production environment up asap! 
 
-**NOTE:** **LetsDeploy** is designed to get your demo(s) into production with minimal cost. Sinceit runs on single-server environments, and is not yet designed to scale.
+**NOTE:** **LetsDeploy** is designed to get your demo(s) into production with minimal cost. It deploys your apps to a single-server environment, so it is not yet designed for scalability.
 
 ## Simple deployment: LetsDeploy this as-is:
 
@@ -40,10 +40,10 @@ When ready, just run `./letsdeploy.sh`! Do you want to re-deploy? Have you made 
 
 The letsdeploy command is idempotent, and the docker-compose wrapper script will tear down and re-orchestrate your containers. This makes it easy to manage the state of your deployment.
 
-### Customizing the deployment:
+## Customizing the deployment:
 We are using Docker-Compose version 2 (latest version), so just edit the `compose.yml` file as needed, and connect it with your `.env` files by including variable names using standard shell syntax (ie `$MY_VARIABLE` or `${MY_VARIABLE}`)
 
-## How do I test this locally?
+### How do I test this locally?
 The automated ssl cert generation/renewal makes this a bit complicated, but we are working to simplify this. For now, to test it locally, just comment out the `letsencrypt`, `nginx`, and `letsencrypt-nginx-cron` containers in `compose.yml`, and copy this to the end of `compose.yml`:
 
 ```yml
