@@ -10,11 +10,9 @@ services:
       - NODE_ENV=${NODE_ENV}
       - SECRET=${SECRET}
       - TZ=${TZ}
-    # ports:
-    #   - 4444:${TOWNSHIP_PORT}
     restart: always
     command: sh -c "/set-timezone.sh && git fetch && git checkout master && git pull --rebase && ./start.sh"
-  
+
   letsencrypt:
     image: lukeswart/letsencrypt
     entrypoint: ""
@@ -45,16 +43,6 @@ services:
       - 80:80
       - 443:443
     restart: always
-
-  # nginx:
-  #   image: lukeswart/nginx-openresty:release-1.9.7.3
-  #   volumes:
-  #     - ./nginx.conf:/nginx.conf
-  #   links:
-  #     - township
-  #   ports:
-  #     - 80:80
-  #   restart: always
 
   # Our cron container that runs our letsencrypt container, and reloads our nginx container
   letsencrypt-nginx-cron:
